@@ -1,0 +1,67 @@
+<h1>Projeto</h1>
+<ul class="tree">
+    <li diretorio>
+        <span>backend</span>
+        <ul>
+            <li diretorio>
+                <span>app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li diretorio>
+                <span>config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li diretorio>
+        <span>frontend</span>
+        <ul>
+            <li diretorio>
+                <span>public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+
+<script>
+    function dropdown(elemento) {
+        const id = elemento.getAttribute('id')
+        const elementoHtml = document.getElementById(id)
+        if (elementoHtml.getAttribute('diretorio') == 'aberto') {
+            elementoHtml.querySelector('ul').style.display = 'none'
+            elementoHtml.style.color = 'red'
+            elementoHtml.setAttribute('diretorio', 'fechado')
+        } else {
+            elementoHtml.querySelector('ul').style.display = ''
+            elementoHtml.style.color = ''
+            elementoHtml.setAttribute('diretorio', 'aberto')
+        }
+    }
+
+    document.querySelectorAll('[diretorio]').forEach(e => {
+        const id = e.querySelector('span').innerText
+        
+        e.querySelector('span').style.cursor = 'pointer'
+        e.setAttribute('diretorio', 'aberto')
+        e.setAttribute('id', id)
+
+        document.getElementById(id)
+            .querySelector('span')
+            .setAttribute('onclick', `dropdown(${id})`)
+    })
+</script>
