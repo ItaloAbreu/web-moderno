@@ -1,0 +1,100 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" alt="Muro da Cidade" width="513" height="342"
+            title="Muro da Cidade por Tarso Bessa" />
+    </p>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="Intro Cod3r" height="342" />
+    </p>
+
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Rio de Janeiro" height="342">
+    </p>
+
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar" height="50" align="left" />
+        <!-- O Atributo 'aling' não é mais suportado, usa-se
+            os atributos CSS 'vertical-align' e 'float'. -->
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Non optio necessitatibus aut culpa assumenda, architecto,
+        ducimus rem placeat voluptas veniam alias quas rerum
+        expedita ea. Laborum nisi perspiciatis dolorum qui?
+    </p>
+
+    <p class="cidade">
+
+    </p>
+
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+        </picture>
+    </p>
+</div>
+
+<style>
+    .circular {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 10px;
+        float: left;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    const TEMPO_DE_TRANSICAO = 5000
+    const sliderItens = document.querySelector('[wm-slider]').querySelectorAll('p')
+    let indiceImgAtual = 0
+
+    function esconderImgs() {
+        sliderItens.forEach(paragraph => {
+            paragraph.style.display = 'none'
+        })
+    }
+
+    function mudarImagem() {
+        indiceImgAtual++
+        if (indiceImgAtual > sliderItens.length) { indiceImgAtual = 1 }
+        sliderItens[indiceImgAtual - 1].style.display = 'block'
+    }
+
+    function moverImg() {
+        const imgAtual = sliderItens[indiceImgAtual - 1]
+        const animacao = imgAtual.animate([
+            { transform: 'translate(0)' },
+            { transform: `translate(${window.innerWidth}px, 0)` }
+        ], TEMPO_DE_TRANSICAO)
+        animacao.addEventListener('finish', function () {
+            imgAtual.style.transform = `translate(${window.innerWidth}px, 0)`
+        })
+    }
+
+    function rodarSlider() {
+        esconderImgs()
+        mudarImagem()
+        moverImg()
+        setTimeout(rodarSlider, TEMPO_DE_TRANSICAO)
+    }
+
+    rodarSlider()
+
+
+</script>
