@@ -6,7 +6,58 @@
     <title>CSS Selectors</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        /*Seletor Universal*/
+        /* * */
+
+        /*Seletor de Classe*/
+        /* .tag */
+
+        /*Seletor de Id*/
+        /* #aprovados */
+ 
+        /*Seletor de Id aninhado*/
+        /* #aninhado > div */
+ 
+        /*Seletor de descendente*/
+        /* #aninhado span */
+ 
+        /*Seletor de irmão adjacentes*/
+        /* p + ul */
+ 
+        /*Seletor de irmãos adjacentes e não adjacentes*/
+        /* p ~ ul */
+        /* p ~ ol */
+ 
+        /*Seletor de Atributo*/
+        /* [feira] */
+ 
+        /*Seletor de Atributo Específico*/
+        /* [feira=casa] */
+ 
+        /*Seletor de Atributos Específicos e Compostos*/
+        /* [feira~=escritorio] */
+ 
+        /*Seletor de Atributo por 'Termos'*/
+        /* [feira*=presa] */
+ 
+        /* Dentro da Section primeiro elemento | section nolabel*/
+        /* section > :nth-child(1) */
+ 
+        /* Dentro da Section elementos ímpares | section nolabel*/
+        /* section> :nth-child(odd) */
+ 
+        /*ol sem nolabel.. pares viram ímpares.. pq label =1*/
+        /* ol :nth-child(even) */
+ 
+        /*2o span da section*/
+        /* section>span:nth-of-type(2) */
+
+
+        section > span:nth-of-type(2) {
+            color: #ff0;
+            background-color: #f77;
+
+        }
     </style>
 </head>
 
@@ -29,7 +80,7 @@
             </ol>
             <div id='aninhado' class='tag'>
                 <div class="tag">
-                    <section class='tag'>
+                    <section class='tag nolabel'>
                         <span class='tag'>1</span>
                         <p class='tag'>2</p>
                         <span class='tag'>3</span>
