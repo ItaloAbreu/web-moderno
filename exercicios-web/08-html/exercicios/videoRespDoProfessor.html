@@ -31,22 +31,20 @@
 </style>
 
 <script>
-    const meuVideo = document.getElementById('meuVideo')
-    const barraDeProgresso = document.querySelector('[wm-progresso] > div')
+    function cnfigurarVideo(id) {
+        const video = document.getElementById(id)
+        video.oncontextmenu = () => false
 
-    meuVideo.oncontextmenu = () => false
+        document.querySelector(`[wm-play=${id}]`).onclick = e => video.play()
+        document.querySelector(`[wm-pause=${id}]`).onclick = e => video.pause()
 
-    document.querySelector('[wm-play]')
-        .setAttribute('onclick', 'meuVideo.play()')
-
-    document.querySelector('[wm-pause]')
-        .setAttribute('onclick', 'meuVideo.pause()')
-
-    function atualizarBarraDeProgresso() {
-        let tempoAtual = meuVideo.currentTime
-        const max = meuVideo.duration
-        barraDeProgresso.style.width = `${tempoAtual / (max / 100)}%`
+        setInterval(() => {
+            const percentual = (video.currentTime / video.duration) * 100
+            const valorDiv = document.querySelector(`[wm-progresso=${id}] > div`)
+            valorDiv.style.width = `${percentual}%`
+            valorDiv.innerHTML = `${percentual.toFixed(1)}%`
+        }, 500)
     }
 
-    setInterval(atualizarBarraDeProgresso, 100)
+    cnfigurarVideo('meuVideo')
 </script>
