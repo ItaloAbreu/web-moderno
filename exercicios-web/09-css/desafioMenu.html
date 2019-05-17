@@ -160,20 +160,20 @@
 
         const pegarHash = url => url.slice(url.split('').lastIndexOf('#'))
 
-        const destacar = hash => document.querySelectorAll(`[href="${hash}"]`)
+        const destacarLink = hash => document.querySelectorAll(`[href="${hash}"]`)
             .forEach(elemento => elemento.classList.add('destaque'))
 
-        const normalizar = hash => document.querySelectorAll(`[href="${hash}"]`)
+        const normalizarLink = hash => document.querySelectorAll(`[href="${hash}"]`)
             .forEach(elemento => elemento.classList.remove('destaque'))
 
         window.addEventListener('hashchange', function() {
             const hashAnterior = pegarHash(event.oldURL)
             const hashNova = pegarHash(event.newURL)
             if(hashAnterior[0] !== hashNova[0]) {
-                destacar(hashNova)
+                destacarLink(hashNova)
             } else{
-                normalizar(hashAnterior)
-                destacar(hashNova)
+                normalizarLink(hashAnterior)
+                destacarLink(hashNova)
             }    
         })
 
